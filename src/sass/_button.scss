@@ -1,0 +1,28 @@
+@use 'variables' as *;
+
+button {
+  cursor: pointer;
+  font-size: inherit;
+  color: inherit;
+  background-color: var(--lighter-gray);
+  border: 1px solid var(--light-gray);
+  &:hover {
+    background-color: var(--light-gray);
+  }
+}
+
+html.color-scheme-dark button {
+  background-color: var(--dark-gray);
+  border-color: var(--gray);
+  &:hover {
+    background-color: var(--gray);
+  }
+}
+
+.button--mode {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  border-radius: 0.2rem;
+  padding: 2rem;
+}

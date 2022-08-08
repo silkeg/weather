@@ -1,0 +1,43 @@
+{
+  "scripts": {
+    "dev": "npm-run-all --parallel server sass-dev postcss-dev webpack-dev copy-assets",
+    "build": "npm-run-all --sequential copy-assets sass-build postcss-build clean-temp webpack-build",
+    "sass-dev": "sass src/sass:src/temp --watch --embed-source-map",
+    "sass-build": "sass src/sass:src/temp --embed-source-map --style=compressed",
+    "postcss-dev": "postcss src/temp/*.css --dir dist/css --use postcss-preset-env --map --watch",
+    "postcss-build": "postcss src/temp/*.css --dir dist/css --use postcss-preset-env cssnano --map",
+    "webpack-dev": "webpack --mode=development --watch",
+    "webpack-build": "webpack --mode=production",
+    "copy-assets": "del-cli dist/ && mkdir -p dist && cp -r src/assets/* dist",
+    "clean": "del-cli dist/",
+    "clean-temp": "del-cli src/temp/",
+    "server": "browser-sync start --server --watch --files '*.html, dist/css/*.css, dist/js/*.js' "
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "autoprefixer": "^10.4.0",
+    "babel-loader": "^8.2.3",
+    "browser-sync": "^2.27.7",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "npm-run-all": "^4.1.5",
+    "cssnano": "^5.1.4",
+    "del-cli": "^4.0.1",
+    "postcss": "^8.4.12",
+    "postcss-cli": "^9.1.0",
+    "postcss-preset-env": "^7.4.2",
+    "sass": "^1.49.9",
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1"
+  },
+  "browserslist": [
+    "defaults",
+    "not IE 11"
+  ]
+}

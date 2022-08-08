@@ -1,0 +1,21 @@
+.widget {
+  position: absolute;
+  top: 3.2rem;
+  left: 26rem;
+  right: 16rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  span {
+    margin-inline: 1rem;
+  }
+}
+
+html.color-scheme-dark .widget--button__edit,
+html.color-scheme-dark .widget--button__edit:hover,
+.widget--button__edit:hover,
+.widget--button__edit {
+  background-color: transparent;
+  border: none;
+  white-space: nowrap;
+}

@@ -1,0 +1,5 @@
+@use 'variables' as *;
+
+.error-message {
+  color: var(--text-color-error);
+}

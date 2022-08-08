@@ -1,0 +1,17 @@
+// CSS-Variablen
+:root {
+  --light-gray: rgb(221, 221, 221);
+  --lighter-gray: rgb(249, 249, 249);
+  --gray: rgb(65, 70, 77);
+  --dark-gray: rgb(37, 37, 37);
+
+  --background-color: var(--gray);
+  --background-color-darkmode: rgb(0, 0, 0);
+  --text-color: var(--dark-gray);
+  --text-color-darkmode: rgb(255, 255, 255);
+  --text-color-error: red;
+}
+
+$content-width: 62.5rem;
+$font-main: 'TabletGothic', 'Helvetica Neue', Helvetica, Arial, FreeSans,
+  sans-serif;
