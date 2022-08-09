@@ -6,10 +6,13 @@
   --dark-gray: rgb(37, 37, 37);
 
   --background-color: var(--gray);
-  --background-color-darkmode: rgb(0, 0, 0);
   --text-color: var(--dark-gray);
-  --text-color-darkmode: rgb(255, 255, 255);
   --text-color-error: red;
+}
+
+html.color-scheme-dark:root {
+  --background-color: black;
+  --text-color: white;
 }
 
 $content-width: 62.5rem;

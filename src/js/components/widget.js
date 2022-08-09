@@ -5,7 +5,6 @@ import { widgetContainer } from '../main.js';
 // insert into page
 
 export const displayWidget = (data) => {
-  let widget = {};
   const widgetContent = `
         <img 
           src="http://openweathermap.org/img/w/${data.weather[0].icon}.png" 
@@ -20,11 +19,10 @@ export const displayWidget = (data) => {
         </button>
     `;
 
-  if (!document.querySelector('.widget')) {
+  let widget = document.querySelector('.widget');
+  if (!widget) {
     widget = document.createElement('DIV');
     widget.classList.add('widget');
-  } else {
-    widget = document.querySelector('.widget');
   }
 
   widget.innerHTML = widgetContent;

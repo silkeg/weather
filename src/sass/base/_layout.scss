@@ -9,11 +9,6 @@ body {
   margin: 0;
 }
 
-html.color-scheme-dark body {
-  background: var(--background-color-darkmode);
-  color: white;
-}
-
 .wrapper {
   max-width: $content-width;
   width: 100%;
