@@ -50,7 +50,7 @@ export const editCityHeandler = (displayedName) => {
   }
 
   const removeBackdrop = () => {
-    // cose overlay
+    // choice overlay
     backdrop.nextElementSibling.remove();
     backdrop.remove();
   };
