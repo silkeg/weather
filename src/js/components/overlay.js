@@ -2,12 +2,10 @@ import { init, cityName, message } from '../main.js';
 
 // create overlay for edit cityname
 
-export const editCityHeandler = (displayedName) => {
+export const editCityHeandler = () => {
   const overlay = `
     <ul class="overlay--edit-city">
-        <li class="error-message">
-          ${message ? message : ''}
-        </li>
+        <li id="errorMessage" class="error-message"></li>
         <li>
             <input type="radio" name="inputTyp" id="defaultCity" />
             <label for="defaultCity"> Mein Standort</label><br>
@@ -30,10 +28,16 @@ export const editCityHeandler = (displayedName) => {
         </li>
     </ul>`;
 
-  const backdrop = document.createElement('DIV');
-  backdrop.classList.add('backdrop');
-  document.body.append(backdrop);
-  backdrop.insertAdjacentHTML('afterend', overlay);
+  let overlayContianer = document.querySelector('dialog');
+
+  if (!overlayContianer) {
+    overlayContianer = document.createElement('dialog');
+    document.body.append(overlayContianer);
+    overlayContianer.innerHTML = overlay;
+  }
+
+  document.getElementById('errorMessage').innerHTML = message;
+  overlayContianer.showModal();
 
   const buttonCancel = document.getElementById('overlayCancel');
   const buttonSave = document.getElementById('overlaySave');
@@ -42,6 +46,7 @@ export const editCityHeandler = (displayedName) => {
   const inputCity = document.getElementById('inputCity');
 
   // what is selected
+  //if (cityName) {
   if (cityName || message) {
     custemCity.setAttribute('checked', 'checked');
     inputCity.value = cityName;
@@ -49,20 +54,29 @@ export const editCityHeandler = (displayedName) => {
     defaultCity.setAttribute('checked', 'checked');
   }
 
-  const removeBackdrop = () => {
-    // choice overlay
-    backdrop.nextElementSibling.remove();
-    backdrop.remove();
+  const setData = () => {
+    const data = custemCity.checked ? inputCity.value.trim() : '';
+    // if safari => no localStorage
+    try {
+      localStorage.setItem('city', data); // save city data
+    } catch (error) {
+      return data;
+    }
   };
 
-  const saveData = () => {
-    const data = custemCity.checked ? inputCity.value.trim() : '';
-    localStorage.setItem('city', data); // save city data
-    removeBackdrop();
-    init(true); // creat new widget => display new data
+  const closeOverlay = () => overlayContianer.close();
+
+  const saveData = (event) => {
+    init(setData()); // creat new widget => display new data
+    closeOverlay();
+  };
+
+  const backdropHeandler = (event) => {
+    const ul = overlayContianer.querySelector('ul');
+    ul.contains(event.target) || closeOverlay();
   };
 
   buttonSave.addEventListener('click', saveData);
-  buttonCancel.addEventListener('click', removeBackdrop);
-  backdrop.addEventListener('click', removeBackdrop);
+  buttonCancel.addEventListener('click', closeOverlay);
+  overlayContianer.addEventListener('click', backdropHeandler);
 };

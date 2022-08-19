@@ -29,8 +29,5 @@ export const displayWidget = (data) => {
   widgetContainer.append(widget);
 
   const buttonEdit = document.getElementById('buttonEdit');
-  buttonEdit.addEventListener(
-    'click',
-    editCityHeandler.bind(null, `${data.name}`)
-  );
+  buttonEdit.addEventListener('click', editCityHeandler);
 };

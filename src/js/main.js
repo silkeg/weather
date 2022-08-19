@@ -6,11 +6,11 @@ import { displayWidget } from './components/widget.js';
 const buttonMode = document.getElementById('buttonMode');
 buttonMode.addEventListener('click', changeModeHeandler);
 
-export let message = '';
+export let { message, cityName } = { message: '', cityName: '' };
 
 // weatherApi data query
 const loadJSON = async (type = 'q=Hamburg') => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=27d587c3db122a797bcd3878986d36b8`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=da4408023bcacc8440d3d04ff296d49b`;
   try {
     const data = await (await fetch(url)).json();
     if (data.cod == 429) {
@@ -52,17 +52,24 @@ const getCurrentPositionBrowser = () => {
   }
 };
 
-export let cityName = '';
+const savedCity = () => {
+  // if safari => no localStorage
+  try {
+    return localStorage.getItem('city');
+  } catch (error) {
+    return false;
+  }
+};
 
 // initial weatherApi query
-export const init = (edit = false) => {
+export const init = (editCity = '') => {
   // weatherApi query once per hour
-  edit || setTimeout(init, 3600000);
+  editCity || setTimeout(init, 3600000);
 
   message = '';
 
   // saved Data?
-  cityName = localStorage.getItem('city');
+  cityName = savedCity() || editCity;
 
   if (cityName) {
     // weatherApi query with saved city
