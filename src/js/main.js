@@ -19,7 +19,7 @@ const loadJSON = async (type = 'q=Hamburg') => {
         loadJSON();
       }, 20000);
     } else if (data.cod == 404) {
-      // city not found" => after user input
+      // city not found
       message = 'Stadt konnte nicht gefunden werden <br>';
       getCurrentPositionBrowser();
     } else if (data.cod == 200) {
@@ -35,10 +35,11 @@ const loadJSON = async (type = 'q=Hamburg') => {
 const getCurrentPositionBrowser = () => {
   if (navigator.geolocation) {
     // successful
-    const success = (position) =>
+    const success = (position) => {
       loadJSON(
         `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
       );
+    };
     // unsuccessful
     const error = () => {
       message += 'Standort konnte nicht ermittelt werden  <br>';
@@ -47,8 +48,8 @@ const getCurrentPositionBrowser = () => {
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
     // no geolocation
+    message += 'Standort konnte nicht ermittelt werden';
     loadJSON(); // weatherApi query with default values
-    message = +'Standort konnte nicht ermittelt werden';
   }
 };
 

@@ -1,11 +1,10 @@
 import { init, cityName, message } from '../main.js';
 
 // create overlay for edit cityname
-
 export const editCityHeandler = () => {
   const overlay = `
     <ul class="overlay--edit-city">
-        <li id="errorMessage" class="error-message"></li>
+        <li id="errorMessage" class="error-message">${message}</li>
         <li>
             <input type="radio" name="inputTyp" id="defaultCity" />
             <label for="defaultCity"> Mein Standort</label><br>
@@ -18,7 +17,6 @@ export const editCityHeandler = () => {
                 id = "inputCity"
                 class="overlay--input__city"
                 type="text"
-                value=""
                 placeholder="Ort eingeben"/>
             </label>
         </li>
@@ -28,15 +26,15 @@ export const editCityHeandler = () => {
         </li>
     </ul>`;
 
-  let overlayContianer = document.querySelector('dialog');
+  let overlayContianer = document.querySelector('.overlay-contianer');
 
   if (!overlayContianer) {
     overlayContianer = document.createElement('dialog');
+    overlayContianer.classList.add('overlay-contianer');
     document.body.append(overlayContianer);
-    overlayContianer.innerHTML = overlay;
   }
 
-  document.getElementById('errorMessage').innerHTML = message;
+  overlayContianer.innerHTML = overlay;
   overlayContianer.showModal();
 
   const buttonCancel = document.getElementById('overlayCancel');
@@ -48,10 +46,10 @@ export const editCityHeandler = () => {
   // what is selected
   //if (cityName) {
   if (cityName || message) {
-    custemCity.setAttribute('checked', 'checked');
+    custemCity.checked = true;
     inputCity.value = cityName;
   } else {
-    defaultCity.setAttribute('checked', 'checked');
+    defaultCity.checked = true;
   }
 
   const setData = () => {
@@ -59,6 +57,7 @@ export const editCityHeandler = () => {
     // if safari => no localStorage
     try {
       localStorage.setItem('city', data); // save city data
+      return '';
     } catch (error) {
       return data;
     }
@@ -66,7 +65,7 @@ export const editCityHeandler = () => {
 
   const closeOverlay = () => overlayContianer.close();
 
-  const saveData = (event) => {
+  const saveData = () => {
     init(setData()); // creat new widget => display new data
     closeOverlay();
   };
