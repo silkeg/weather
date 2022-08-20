@@ -34,17 +34,15 @@ const loadJSON = async (type = 'q=Hamburg') => {
 // query geolocation
 const getCurrentPositionBrowser = () => {
   if (navigator.geolocation) {
-    // successful
     const success = (position) => {
       loadJSON(
         `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
       );
     };
-    // unsuccessful
     const error = () => {
       message += 'Standort konnte nicht ermittelt werden  <br>';
-      loadJSON();
-    }; // weatherApi query with default values
+      loadJSON(); // weatherApi query with default values
+    };
     navigator.geolocation.getCurrentPosition(success, error);
   } else {
     // no geolocation
