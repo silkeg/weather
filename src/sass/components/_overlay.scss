@@ -1,4 +1,4 @@
-.overlay-contianer {
+.overlay__contianer {
   width: 30rem;
   max-width: 80%;
   background-color: transparent;
@@ -7,7 +7,7 @@
   margin-top: 2rem;
 }
 
-.overlay--edit-city {
+.overlay__edit-city {
   list-style: none;
   background-color: white;
   box-shadow: 0 0 01rem 0.2rem rgba(0, 0, 0, 0.2);
@@ -28,7 +28,7 @@
       margin-left: 0.5rem;
     }
 
-    .overlay--input__city {
+    .overlay__input--city {
       padding: 0.5rem;
       border: 1px solid rgba(105, 105, 108, 0.21);
       border-radius: 0.2rem;
@@ -41,13 +41,13 @@
       width: 16rem;
     }
     input:checked ~ label {
-      input.overlay--input__city {
+      input.overlay__input--city {
         display: block;
       }
     }
   }
 }
-html.color-scheme-dark .overlay--edit-city {
+html.color-scheme-dark .overlay__edit-city {
   background-color: black;
   color: white;
 }

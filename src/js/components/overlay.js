@@ -3,7 +3,7 @@ import { init, cityName, message } from '../main.js';
 // create overlay for edit cityname
 export const editCityHeandler = () => {
   const overlay = `
-    <ul class="overlay--edit-city">
+    <ul class="overlay__edit-city">
         <li id="errorMessage" class="error-message">${message}</li>
         <li>
             <input type="radio" name="inputTyp" id="defaultCity" />
@@ -15,7 +15,7 @@ export const editCityHeandler = () => {
                 Ort wählen
                 <input
                 id = "inputCity"
-                class="overlay--input__city"
+                class="overlay__input--city"
                 type="text"
                 placeholder="Ort eingeben"/>
             </label>
@@ -26,11 +26,11 @@ export const editCityHeandler = () => {
         </li>
     </ul>`;
 
-  let overlayContianer = document.querySelector('.overlay-contianer');
+  let overlayContianer = document.querySelector('.overlay__contianer');
 
   if (!overlayContianer) {
     overlayContianer = document.createElement('dialog');
-    overlayContianer.classList.add('overlay-contianer');
+    overlayContianer.classList.add('overlay__contianer');
     document.body.append(overlayContianer);
   }
 

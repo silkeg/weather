@@ -14,7 +14,7 @@ export const displayWidget = (data) => {
           ${parseInt(data.main.temp_max)} / 
           ${parseInt(data.main.temp_min)} °C 
         </span>
-        <button id="buttonEdit" class="widget--button__edit">
+        <button id="buttonEdit" class="widget__button--edit">
           ${data.name} ✏️
         </button>
     `;

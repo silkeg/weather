@@ -12,10 +12,10 @@
   }
 }
 
-html.color-scheme-dark .widget--button__edit,
-html.color-scheme-dark .widget--button__edit:hover,
-.widget--button__edit:hover,
-.widget--button__edit {
+html.color-scheme-dark .widget__button--edit,
+html.color-scheme-dark .widget__button--edit:hover,
+.widget__button--edit:hover,
+.widget__button--edit {
   background-color: transparent;
   border: none;
   white-space: nowrap;
