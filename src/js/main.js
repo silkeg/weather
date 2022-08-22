@@ -10,7 +10,7 @@ export let { message, cityName } = { message: '', cityName: '' };
 
 // weatherApi data query
 const loadJSON = async (type = 'q=Hamburg') => {
-  const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=da4408023bcacc8440d3d04ff296d49b`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=[Api-key]`;
   try {
     const data = await (await fetch(url)).json();
     if (data.cod == 429) {
