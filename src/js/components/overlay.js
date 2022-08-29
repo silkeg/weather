@@ -30,18 +30,16 @@ export const editCityHeandler = () => {
   if (!overlayContianer) {
     overlayContianer = document.createElement('dialog');
     overlayContianer.classList.add('overlay__contianer');
-    document.body.append(overlayContianer);
     overlayContianer.innerHTML = overlay;
+    if (dataContainer.message) {
+      const errorMessage = document.createElement('li');
+      errorMessage.className = 'error-message';
+      errorMessage.innerHTML = dataContainer.message;
+      overlayContianer.querySelector('ul').prepend(errorMessage);
+    }
+    document.body.append(overlayContianer);
   }
 
-  if (dataContainer.message) {
-    const errorMessage = document.createElement('li');
-    errorMessage.className = 'error-message';
-    errorMessage.innerHTML = dataContainer.message;
-    overlayContianer.querySelector('ul').prepend(errorMessage);
-  }
-
-  document.getElementById('errorMessage');
   overlayContianer.showModal();
 
   const buttonCancel = document.getElementById('overlayCancel');
@@ -70,7 +68,8 @@ export const editCityHeandler = () => {
   };
 
   const closeOverlay = () => {
-    overlayContianer.close();
+    //overlayContianer.close();
+    overlayContianer.remove();
     dataContainer.message = '';
     document.querySelector('.error-message') &&
       document.querySelector('.error-message').remove();
