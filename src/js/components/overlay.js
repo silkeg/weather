@@ -1,10 +1,9 @@
-import { init, cityName, message } from '../main.js';
+import { init, dataContainer } from '../main.js';
 
 // create overlay for edit cityname
 export const editCityHeandler = () => {
   const overlay = `
     <ul class="overlay__edit-city">
-        <li id="errorMessage" class="error-message">${message}</li>
         <li>
             <input type="radio" name="inputTyp" id="defaultCity" />
             <label for="defaultCity"> Mein Standort</label><br>
@@ -32,9 +31,17 @@ export const editCityHeandler = () => {
     overlayContianer = document.createElement('dialog');
     overlayContianer.classList.add('overlay__contianer');
     document.body.append(overlayContianer);
+    overlayContianer.innerHTML = overlay;
   }
 
-  overlayContianer.innerHTML = overlay;
+  if (dataContainer.message) {
+    const errorMessage = document.createElement('li');
+    errorMessage.className = 'error-message';
+    errorMessage.innerHTML = dataContainer.message;
+    overlayContianer.querySelector('ul').prepend(errorMessage);
+  }
+
+  document.getElementById('errorMessage');
   overlayContianer.showModal();
 
   const buttonCancel = document.getElementById('overlayCancel');
@@ -44,10 +51,9 @@ export const editCityHeandler = () => {
   const inputCity = document.getElementById('inputCity');
 
   // what is selected
-  //if (cityName) {
-  if (cityName || message) {
+  if (dataContainer.cityName || dataContainer.message) {
     custemCity.checked = true;
-    inputCity.value = cityName;
+    inputCity.value = dataContainer.cityName;
   } else {
     defaultCity.checked = true;
   }
@@ -63,7 +69,12 @@ export const editCityHeandler = () => {
     }
   };
 
-  const closeOverlay = () => overlayContianer.close();
+  const closeOverlay = () => {
+    overlayContianer.close();
+    dataContainer.message = '';
+    document.querySelector('.error-message') &&
+      document.querySelector('.error-message').remove();
+  };
 
   const saveData = () => {
     init(setData()); // creat new widget => display new data
