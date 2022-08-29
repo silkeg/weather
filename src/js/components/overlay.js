@@ -85,6 +85,11 @@ export const editCityHeandler = () => {
     ul.contains(event.target) || closeOverlay();
   };
 
+  inputCity.addEventListener('keypress', (e) => {
+    var keycode = e.keyCode ? e.keyCode : e.which;
+    keycode == '13' && saveData();
+  });
+
   buttonSave.addEventListener('click', saveData);
   buttonCancel.addEventListener('click', closeOverlay);
   overlayContianer.addEventListener('click', backdropHeandler);
