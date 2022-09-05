@@ -2,7 +2,7 @@
 
 https://home.openweathermap.org/  
 key generieren  
-in die 'apiKey.js' => key eintragen
+in die 'src/js/apiKey.js' => 123 => durch dem key ersetzten
 
 ```
 -> npm init
