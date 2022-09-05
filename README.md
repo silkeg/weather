@@ -1,7 +1,7 @@
 # Wie wird das Wetter?
 
-https://home.openweathermap.org/
-key generieren
+https://home.openweathermap.org/  
+key generieren  
 in die 'apiKey.js' => key eintragen
 
 ```
