@@ -9,8 +9,7 @@ export const dataContainer = { message: '', cityName: '' };
 
 // initial weatherApi query
 export const init = (editCity = '') => {
-  // weatherApi query once per hour
-  editCity || setTimeout(init, 3600000);
+  editCity || setTimeout(init, 3600000); // weatherApi query once per hour
 
   const getCityName = () => {
     // if safari => no localStorage
