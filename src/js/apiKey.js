@@ -1,2 +1,2 @@
 // please insert the apiKey
-export const apiKey = '123';
+export const apiKey = '[yourKey]';
