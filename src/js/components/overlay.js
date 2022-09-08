@@ -41,12 +41,11 @@ const overlay = () => {
   input3Element.type = 'text';
   input3Element.placeholder = 'Ort eingeben';
 
-  const buttonLine = createElementFunction('li', ulElement);
-  const button1Element = createElementFunction('button', buttonLine);
+  const buttons = createElementFunction('li', ulElement);
+  const button1Element = createElementFunction('button', buttons);
   button1Element.textContent = 'Abbrechen';
   button1Element.id = 'overlayCancel';
-
-  const button2Element = createElementFunction('button', buttonLine);
+  const button2Element = createElementFunction('button', buttons);
   button2Element.textContent = 'Speichern';
   button2Element.id = 'overlaySave';
 
