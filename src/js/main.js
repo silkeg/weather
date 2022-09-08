@@ -1,6 +1,6 @@
 import { changeModeHeandler } from './components/buttonMode.js';
 import { getPosition } from './components/getPosition.js';
-import { loadJSON } from './components/getWeatherData.js';
+import { updateData } from './components/getWeatherData.js';
 
 const buttonMode = document.getElementById('buttonMode');
 buttonMode.addEventListener('click', changeModeHeandler);
@@ -22,7 +22,7 @@ export const init = (editCity = '') => {
 
   dataContainer.cityName = getCityName() || editCity;
   dataContainer.cityName
-    ? loadJSON(`q=${dataContainer.cityName}`)
+    ? updateData(`q=${dataContainer.cityName}`)
     : getPosition();
 };
 
