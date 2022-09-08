@@ -5,7 +5,7 @@ import { loadJSON } from './components/getWeatherData.js';
 const buttonMode = document.getElementById('buttonMode');
 buttonMode.addEventListener('click', changeModeHeandler);
 
-export const dataContainer = { message: '', cityName: '' };
+export const dataContainer = { message: [], cityName: '' };
 
 // initial weatherApi query
 export const init = (editCity = '') => {

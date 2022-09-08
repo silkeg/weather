@@ -18,7 +18,7 @@ export const getPosition = async () => {
       `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
     );
   } catch (error) {
-    dataContainer.message += 'Standort konnte nicht ermittelt werden  <br>';
+    dataContainer.message.push('Standort konnte nicht ermittelt werden');
     loadJSON();
   }
 };

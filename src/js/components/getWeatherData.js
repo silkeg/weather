@@ -21,7 +21,7 @@ export const loadJSON = async (type = 'q=Hamburg') => {
       case '404':
         // city not found
         console.log(data.message);
-        dataContainer.message += 'Stadt konnte nicht gefunden werden <br>';
+        dataContainer.message.push('Stadt konnte nicht gefunden werden');
         getPosition();
         break;
       case 200:

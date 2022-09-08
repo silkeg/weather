@@ -8,10 +8,14 @@ const overlay = () => {
   const ulElement = createElementFunction('ul', overlayContianer);
   ulElement.className = 'overlay__edit-city';
 
-  if (dataContainer.message) {
+  if (dataContainer.message.length > 0) {
     const errorMessage = createElementFunction('li', ulElement);
     errorMessage.className = 'error-message';
-    errorMessage.innerHTML = dataContainer.message;
+    for (let i in dataContainer.message) {
+      const spanElement = createElementFunction('span', errorMessage);
+      spanElement.textContent = dataContainer.message[i];
+      createElementFunction('br', errorMessage);
+    }
   }
 
   const myPosition = createElementFunction('li', ulElement);
@@ -53,7 +57,7 @@ const overlay = () => {
 export const editCityHeandler = () => {
   let overlayContianer = document.querySelector('.overlay__contianer');
   overlayContianer && overlayContianer.remove();
-  overlayContianer = overlay(dataContainer.message);
+  overlayContianer = overlay();
   document.body.append(overlayContianer);
 
   overlayContianer.showModal();
@@ -83,7 +87,7 @@ export const editCityHeandler = () => {
   const closeOverlay = () => {
     //overlayContianer.close();
     overlayContianer.remove();
-    dataContainer.message = '';
+    dataContainer.message = [];
     document.querySelector('.error-message') &&
       document.querySelector('.error-message').remove();
   };
