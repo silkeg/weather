@@ -4,9 +4,11 @@ import { dataContainer } from '../main.js';
 import { apiKey } from '../apiKey';
 
 // weatherApi data query
+let count = 0;
 export const loadJSON = async (type = 'q=Hamburg') => {
   const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=${apiKey}`;
   try {
+    console.log(url);
     const data = await (await fetch(url)).json();
     switch (data.cod) {
       case '429':
@@ -28,7 +30,8 @@ export const loadJSON = async (type = 'q=Hamburg') => {
         break;
       default:
         console.log(data.message);
-        loadJSON();
+        count < 3 && loadJSON();
+        count++;
         break;
     }
   } catch (error) {
