@@ -1,5 +1,5 @@
 import { dataContainer } from '../main';
-import { loadJSON } from './getWeatherData';
+import { updateData } from './getWeatherData';
 
 const getGeoLocation = () => {
   const promis = new Promise((resolve, reject) => {
@@ -14,11 +14,11 @@ const getGeoLocation = () => {
 export const getPosition = async () => {
   try {
     const position = await getGeoLocation();
-    loadJSON(
+    updateData(
       `lat=${position.coords.latitude}&lon=${position.coords.longitude}`
     );
   } catch (error) {
     dataContainer.message.push('Standort konnte nicht ermittelt werden');
-    loadJSON();
+    updateData();
   }
 };

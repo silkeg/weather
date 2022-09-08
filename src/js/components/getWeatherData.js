@@ -5,7 +5,7 @@ import { apiKey } from '../apiKey';
 
 // weatherApi data query
 let count = 0;
-export const loadJSON = async (type = 'q=Hamburg') => {
+export const updateData = async (type = 'q=Hamburg') => {
   const url = `https://api.openweathermap.org/data/2.5/weather?${type}&lang=de&units=metric&appid=${apiKey}`;
   try {
     console.log(url);
@@ -15,7 +15,7 @@ export const loadJSON = async (type = 'q=Hamburg') => {
         // to many request
         console.log(data.message);
         setTimeout(() => {
-          loadJSON();
+          updateData();
         }, 3800000);
         break;
       case '404':
@@ -30,7 +30,7 @@ export const loadJSON = async (type = 'q=Hamburg') => {
         break;
       default:
         console.log(data.message);
-        count < 3 && loadJSON();
+        count < 3 && updateData();
         count++;
         break;
     }
