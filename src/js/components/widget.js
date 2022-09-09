@@ -4,9 +4,9 @@ import { createElementFunction } from './createElementFunction.js';
 
 // create widget
 export const displayWidget = (data) => {
-  let widget = document.querySelector('.widget');
+  let widget = document.getElementById('widget');
   widget && widget.remove();
-  widget = createElementFunction('div', null, 'widget');
+  widget = createElementFunction('div', null, 'widget', 'widget');
 
   const imgElement = createElementFunction('img', widget);
   imgElement.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;

@@ -4,13 +4,12 @@ import { createElementFunction } from './createElementFunction.js';
 const overlay = () => {
   let overlayContianer = document.getElementById('overlayContianer');
   overlayContianer && overlayContianer.remove();
-  overlayContianer = createElementFunction('dialog', null, 'overlay__contianer');
-  overlayContianer.id = 'overlayContianer';
+  overlayContianer = createElementFunction('dialog', null, 'overlayContianer', 'overlay__contianer');
 
-  const ulElement = createElementFunction('ul', overlayContianer, 'overlay__edit-city');
+  const ulElement = createElementFunction('ul', overlayContianer, null, 'overlay__edit-city');
 
   if (dataContainer.message.length > 0) {
-    const errorMessage = createElementFunction('li', ulElement, 'error-message');
+    const errorMessage = createElementFunction('li', ulElement, null, 'error-message');
     for (let i in dataContainer.message) {
       const spanElement = createElementFunction('span', errorMessage);
       spanElement.textContent = dataContainer.message[i];
@@ -19,8 +18,7 @@ const overlay = () => {
   }
 
   const myPosition = createElementFunction('li', ulElement);
-  const inputElement = createElementFunction('input', myPosition);
-  inputElement.id = 'defaultCity';
+  const inputElement = createElementFunction('input', myPosition, 'defaultCity');
   inputElement.name = 'inputTyp';
   inputElement.type = 'radio';
   const labelElement = createElementFunction('label', myPosition);
@@ -28,25 +26,21 @@ const overlay = () => {
   labelElement.textContent = 'Mein Standort';
 
   const custemPosition = createElementFunction('li', ulElement);
-  const input2Element = createElementFunction('input', custemPosition);
-  input2Element.id = 'custemCity';
+  const input2Element = createElementFunction('input', custemPosition, 'custemCity');
   input2Element.name = 'inputTyp';
   input2Element.type = 'radio';
   const label2Element = createElementFunction('label', custemPosition);
   label2Element.setAttribute('for', 'custemCity');
   label2Element.textContent = 'Ort wählen';
-  const input3Element = createElementFunction('input', label2Element, 'overlay__input--city');
-  input3Element.id = 'inputCity';
+  const input3Element = createElementFunction('input', label2Element, 'inputCity', 'overlay__input--city');
   input3Element.type = 'text';
   input3Element.placeholder = 'Ort eingeben';
 
-  const buttons = createElementFunction('li', ulElement);
-  const button1Element = createElementFunction('button', buttons);
+  const buttonsRow = createElementFunction('li', ulElement);
+  const button1Element = createElementFunction('button', buttonsRow, 'overlayCancel');
   button1Element.textContent = 'Abbrechen';
-  button1Element.id = 'overlayCancel';
-  const button2Element = createElementFunction('button', buttons);
+  const button2Element = createElementFunction('button', buttonsRow, 'overlaySave');
   button2Element.textContent = 'Speichern';
-  button2Element.id = 'overlaySave';
 
   return overlayContianer;
 };
