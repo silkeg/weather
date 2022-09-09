@@ -1,4 +1,4 @@
-export const createElementFunction = (elementName, appentTo, hasId, hasClass) => {
+export const createHtmlElement = (elementName, appentTo, hasId, hasClass) => {
   let element = document.createElement(elementName);
   hasId && (element.id = hasId);
   hasClass && (element.className = hasClass);
