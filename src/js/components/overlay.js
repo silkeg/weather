@@ -2,15 +2,15 @@ import { init, dataContainer } from '../main.js';
 import { createElementFunction } from './createElementFunction.js';
 
 const overlay = () => {
-  const overlayContianer = createElementFunction('dialog');
-  overlayContianer.className = 'overlay__contianer';
+  let overlayContianer = document.getElementById('overlayContianer');
+  overlayContianer && overlayContianer.remove();
+  overlayContianer = createElementFunction('dialog', null, 'overlay__contianer');
+  overlayContianer.id = 'overlayContianer';
 
-  const ulElement = createElementFunction('ul', overlayContianer);
-  ulElement.className = 'overlay__edit-city';
+  const ulElement = createElementFunction('ul', overlayContianer, 'overlay__edit-city');
 
   if (dataContainer.message.length > 0) {
-    const errorMessage = createElementFunction('li', ulElement);
-    errorMessage.className = 'error-message';
+    const errorMessage = createElementFunction('li', ulElement, 'error-message');
     for (let i in dataContainer.message) {
       const spanElement = createElementFunction('span', errorMessage);
       spanElement.textContent = dataContainer.message[i];
@@ -35,9 +35,8 @@ const overlay = () => {
   const label2Element = createElementFunction('label', custemPosition);
   label2Element.setAttribute('for', 'custemCity');
   label2Element.textContent = 'Ort wählen';
-  const input3Element = createElementFunction('input', label2Element);
+  const input3Element = createElementFunction('input', label2Element, 'overlay__input--city');
   input3Element.id = 'inputCity';
-  input3Element.className = 'overlay__input--city';
   input3Element.type = 'text';
   input3Element.placeholder = 'Ort eingeben';
 
@@ -54,12 +53,10 @@ const overlay = () => {
 
 // create overlay for edit cityname
 export const editCityHeandler = () => {
-  let overlayContianer = document.querySelector('.overlay__contianer');
-  overlayContianer && overlayContianer.remove();
-  overlayContianer = overlay();
-  document.body.append(overlayContianer);
-
+  document.body.append(overlay());
+  const overlayContianer = document.getElementById('overlayContianer');
   overlayContianer.showModal();
+
   const defaultCity = document.getElementById('defaultCity');
   const custemCity = document.getElementById('custemCity');
   const inputCity = document.getElementById('inputCity');
@@ -87,8 +84,7 @@ export const editCityHeandler = () => {
     //overlayContianer.close();
     overlayContianer.remove();
     dataContainer.message = [];
-    document.querySelector('.error-message') &&
-      document.querySelector('.error-message').remove();
+    document.querySelector('.error-message') && document.querySelector('.error-message').remove();
   };
 
   const saveData = () => {

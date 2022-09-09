@@ -1,7 +1,6 @@
-export const createElementFunction = (elementName, appentTo) => {
+export const createElementFunction = (elementName, appentTo, hasClass) => {
   let element = document.createElement(elementName);
-  if (appentTo) {
-    appentTo.appendChild(element);
-  }
+  hasClass && (element.className = hasClass);
+  appentTo && appentTo.appendChild(element);
   return element;
 };
